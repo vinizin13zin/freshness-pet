@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>FreshnessPet — Black Friday de cosméticos para pets</title>
+<meta name="description" content="Shampoos, condicionadores, máscaras, colônias e a nova linha Pet Glow. Cosméticos premium para pets com preços de Black Friday.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="FreshnessPet — Black Friday">
+<meta property="og:description" content="Cosméticos premium para pets com até 35% OFF.">
+<meta property="og:image" content="https://vinizin13zin.github.io/freshnesspet/img/pet-glow-lancamento.webp">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#ofertas">Pular para as ofertas</a>
+
+<header class="nav" id="topo">
+  <a class="brand" href="#topo" aria-label="FreshnessPet — início">
+    <svg class="paw" viewBox="0 0 64 64" aria-hidden="true"><circle cx="14" cy="24" r="7"/><circle cx="26" cy="12" r="7"/><circle cx="38" cy="12" r="7"/><circle cx="50" cy="24" r="7"/><path d="M32 58 L14 41 a10 10 0 0 1 18-12 a10 10 0 0 1 18 12 Z"/></svg>
+    <span>Freshness<b>Pet</b></span>
+  </a>
+  <nav aria-label="Principal">
+    <a href="#ofertas">Ofertas</a>
+    <a href="#pet-glow">Pet Glow</a>
+    <a href="#sobre">Sobre</a>
+  </nav>
+  <a class="btn btn-sm" href="#ofertas">Black Friday</a>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy fade">
+      <p class="eyebrow"><span class="dot"></span> Black Friday · até 35% OFF</p>
+      <h1 id="hero-title" >Banho de pet shop,<br><span class="hl">cheiro que fica.</span></h1>
+      <p class="lead">Shampoos, máscaras e colônias premium com ativos naturais, pH balanceado e alto rendimento. Desenvolvidos com groomers e especialistas veterinários.</p>
+      <div class="cta-row">
+        <a class="btn" href="#ofertas">Ver ofertas <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#pet-glow">Lançamento Pet Glow</a>
+      </div>
+      <ul class="chips" aria-label="Diferenciais">
+        <li>pH balanceado</li><li>Não testado em animais</li><li>Rende até 5x mais</li>
+      </ul>
+    </div>
+
+    <div class="hero-art">
+      <canvas id="particles" aria-hidden="true"></canvas>
+      <img id="westie" class="westie-fallback" src="img/westie.png" alt="Cachorro West Highland branco, de pelo limpo e macio" width="870" height="1220">
+      <p class="hint" aria-hidden="true">Passe o mouse ou o dedo no pet</p>
+      <div class="float-card fc1" aria-hidden="true"><b>-35%</b><span>Black Friday</span></div>
+      <div class="float-card fc2" aria-hidden="true"><b>5x</b><span>mais rendimento</span></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Black Friday</span><span>✦</span><span>Shampoos 5L</span><span>✦</span><span>Máscaras 1kg</span><span>✦</span><span>Colônias 500ml</span><span>✦</span><span>Pet Glow</span><span>✦</span><span>Óleo de Argan</span><span>✦</span>
+      <span>Black Friday</span><span>✦</span><span>Shampoos 5L</span><span>✦</span><span>Máscaras 1kg</span><span>✦</span><span>Colônias 500ml</span><span>✦</span><span>Pet Glow</span><span>✦</span><span>Óleo de Argan</span><span>✦</span>
+    </div>
+  </div>
+
+  <section class="bf" id="ofertas" aria-labelledby="bf-title">
+    <div class="bf-head">
+      <div>
+        <p class="eyebrow reveal">Ofertas por tempo limitado</p>
+        <h2 id="bf-title" class="reveal">Black <span class="hl">Friday</span></h2>
+        <p class="sub reveal">Preços especiais em toda a linha. Escolha, chame no Instagram e garanta o seu.</p>
+      </div>
+      <div class="countdown reveal" role="timer" aria-label="Tempo restante da Black Friday">
+        <div><b id="cd-d">00</b><span>dias</span></div>
+        <div><b id="cd-h">00</b><span>horas</span></div>
+        <div><b id="cd-m">00</b><span>min</span></div>
+        <div><b id="cd-s">00</b><span>seg</span></div>
+      </div>
+    </div>
+
+    <div class="filters" role="tablist" aria-label="Categorias">
+      <button role="tab" aria-selected="true" data-cat="todos">Todos</button>
+      <button role="tab" aria-selected="false" data-cat="shampoo">Shampoos</button>
+      <button role="tab" aria-selected="false" data-cat="tratamento">Condicionadores & Máscaras</button>
+      <button role="tab" aria-selected="false" data-cat="finalizacao">Finalização</button>
+      <button role="tab" aria-selected="false" data-cat="colonia">Colônias</button>
+    </div>
+
+    <ul class="products" id="products"></ul>
+
+    <template id="card-tpl">
+      <li class="card">
+        <span class="off"></span>
+        <div class="card-img"><img alt="" loading="lazy" width="320" height="370"></div>
+        <div class="card-body">
+          <p class="tag"></p>
+          <h3></h3>
+          <p class="desc"></p>
+          <div class="price"><s></s><strong></strong></div>
+          <a class="btn btn-card" target="_blank" rel="noopener noreferrer">Quero esse</a>
+        </div>
+      </li>
+    </template>
+    <p class="note">Valores promocionais válidos durante a Black Friday ou enquanto durarem os estoques. Confirme preço e frete pelo Instagram.</p>
+  </section>
+
+  <div class="glow-wrap"><section class="glow" id="pet-glow" aria-labelledby="glow-title">
+    <div class="glow-img reveal">
+      <img src="img/pet-glow-linha.webp" decoding="async" alt="Linha Pet Glow: três galões de 5 litros e um spray, embalagens pretas com rótulo dourado" width="1024" height="576">
+      <span class="badge-launch">Lançamento</span>
+    </div>
+    <div class="glow-copy">
+      <p class="eyebrow reveal">Nova linha</p>
+      <h2 id="glow-title" class="reveal">Pet <span class="gold">Glow</span></h2>
+      <p class="reveal">Embalagem preta e dourada, fragrância única e diluição 1/10 que rende muito mais por banho. A linha mais sofisticada da FreshnessPet — agora com preço de lançamento na Black Friday.</p>
+      <ul class="checks reveal">
+        <li>Fragrância única e marcante</li>
+        <li>Diluição 1/10 — alto rendimento</li>
+        <li>Galão 5L + spray de finalização</li>
+      </ul>
+      <a class="btn reveal" href="https://ig.me/m/freshnesspet" target="_blank" rel="noopener noreferrer">Quero conhecer o Pet Glow</a>
+    </div>
+  </section></div>
+
+  <section class="about" id="sobre" aria-labelledby="sobre-title">
+    <h2 id="sobre-title" class="reveal">Quem <span class="hl">somos</span></h2>
+    <p class="reveal">Com mais de 3 anos de expertise em cosméticos para pets, nossos produtos são cuidadosamente desenvolvidos para proporcionar uma experiência de banho incrível ao seu melhor amigo, com máxima qualidade e segurança.</p>
+    <div class="stats">
+      <div class="stat reveal"><b data-count="3">3</b><span>anos de expertise</span></div>
+      <div class="stat reveal"><b data-count="21">21</b><span>produtos na linha</span></div>
+      <div class="stat reveal"><b data-count="5">5</b><span>x mais rendimento</span></div>
+      <div class="stat reveal"><b>0</b><span>testes em animais</span></div>
+    </div>
+  </section>
+
+  <section class="final reveal" aria-labelledby="final-title">
+    <h2 id="final-title">Seu pet merece o melhor<br>em cada banho.</h2>
+    <a class="btn" href="https://ig.me/m/freshnesspet" target="_blank" rel="noopener noreferrer">Falar no Instagram</a>
+  </section>
+</main>
+
+<footer class="foot">
+  <a class="brand" href="#topo"><svg class="paw" viewBox="0 0 64 64" aria-hidden="true"><circle cx="14" cy="24" r="7"/><circle cx="26" cy="12" r="7"/><circle cx="38" cy="12" r="7"/><circle cx="50" cy="24" r="7"/><path d="M32 58 L14 41 a10 10 0 0 1 18-12 a10 10 0 0 1 18 12 Z"/></svg><span>Freshness<b>Pet</b></span></a>
+  <a href="https://www.instagram.com/freshnesspet/" target="_blank" rel="noopener noreferrer">@freshnesspet</a>
+  <p>© 2026 FreshnessPet. Produtos não testados em animais.</p>
+</footer>
+</body>
+</html>
